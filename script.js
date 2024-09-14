@@ -5,7 +5,6 @@ var profilePicInput = document.getElementById('profile-pic');
 var profilePicPreview = document.querySelector('.profile-picture img');
 var copyLinkBtn = document.getElementById("copy-link-btn");
 var downloadBtn = document.getElementById("download-btn");
-// Ensure profilePicPreview exists before setting its src
 if (profilePicInput) {
     profilePicInput.addEventListener('change', function () {
         var _a;
@@ -22,7 +21,6 @@ if (profilePicInput) {
         }
     });
 }
-// Handle resume form submission
 if (form) {
     form.addEventListener("submit", function (event) {
         var _a, _b, _c, _d, _e;
@@ -40,21 +38,17 @@ if (form) {
         console.log("Name:", name);
         console.log("Email:", email);
         console.log("Profile Pic Source:", profilePicPreview.src);
-        // Generate resume HTML
         var resumeHTML = "\n            <div class=\"profile-picture\">\n                <img src=\"".concat(profilePicPreview.src, "\" alt=\"Profile Picture\">\n            </div>\n            <h3>").concat(name, "</h3>\n            <p><strong>Email:</strong> ").concat(email, "</p>\n            <p><strong>Education:</strong></p>\n            <p>").concat(education, "</p>\n            <p id=\"skills-section\"><strong>Skills:</strong></p>\n            <ul id=\"skills-list\">").concat(skills.split(",").map(function (skill) { return "<li>".concat(skill.trim(), "</li>"); }).join(''), "</ul>\n            <p><strong>Experience:</strong></p>\n            <p>").concat(experience, "</p>\n        ");
         if (resumeOutput) {
             resumeOutput.innerHTML = resumeHTML;
         }
-        // Create a URL-friendly slug from the name
-        var slug = name.toLowerCase().replace(/\s+/g, '-');
-        // Generate a unique URL for the resume
-        var uniqueURL = "https://your-app.vercel.app/resume/".concat(slug);
+        var user_url = name.toLowerCase().replace(/\s+/g, '-');
+        var uniqueURL = "https://your-app.vercel.app/resume/".concat(user_url);
         if (shareableLinkInput) {
             shareableLinkInput.value = uniqueURL;
         }
     });
 }
-// Handle "Copy Link" button click using Clipboard API
 if (copyLinkBtn && shareableLinkInput) {
     copyLinkBtn.addEventListener("click", function () {
         var urlToCopy = shareableLinkInput.value;
@@ -70,14 +64,12 @@ if (copyLinkBtn && shareableLinkInput) {
         }
     });
 }
-// Function to download the resume as a PDF
 function downloadResumeAsPDF() {
     var elementToConvert = document.getElementById("resume-output");
     if (!elementToConvert) {
         console.error("No resume output element found to convert to PDF.");
         return;
     }
-    // Define options for the PDF
     var opt = {
         margin: 0.5,
         filename: 'resume.pdf',
@@ -85,10 +77,8 @@ function downloadResumeAsPDF() {
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-    // Generate PDF and save it
     html2pdf().from(elementToConvert).set(opt).save();
 }
-// Attach the download function to the button click event
 if (downloadBtn) {
     downloadBtn.addEventListener("click", downloadResumeAsPDF);
 }
