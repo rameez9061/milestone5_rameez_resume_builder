@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder and Downloader</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Editable Resume Builder</h1>
+        </header>
+
+        <section id="form-section">
+            <h2>Enter Your Information</h2>
+            <form id="resume-form">
+                <label for="profile-pic">Upload Profile Picture:</label>
+                <input type="file" id="profile-pic" accept="image/*">
+
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+
+                <label for="education">Education:</label>
+                <textarea id="education" rows="3" required></textarea>
+
+                <label for="skills">Skills:</label>
+                <textarea id="skills" rows="3" required></textarea>
+
+                <label for="experience">Work Experience:</label>
+                <textarea id="experience" rows="3" required></textarea>
+
+                <button type="submit">Generate Resume</button>
+            </form>
+        </section>
+
+        <section id="resume-preview">
+            <h2>Resume Preview</h2>
+            <div id="resume-output">
+                <div class="profile-picture">
+                    <img src="" alt="">
+                </div>
+                
+             
+            </div>
+        </section>
+        <div id="share-section">
+            <p>Shareable Link:</p>
+            <input type="text" id="shareable-link" readonly>
+            <button id="copy-link-btn">Copy Link</button>
+        </div>
+
+        <!-- Button to Download Resume as PDF -->
+        <button id="download-btn">Download as PDF</button>
+
+        
+    </div>
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
